@@ -1,8 +1,8 @@
-<?php 
+<!-- <?php 
 require_once 'indclude/database.php';
 require_once 'indclude/function.php.';
 
- ?>
+ ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@ require_once 'indclude/function.php.';
 	<title>Document</title>
 </head>
 <body>
-	
+		<form>
 				<label>ФИО:</label><br>
 				<input id="fio" type="text" name="fio" required="" placeholder="Копыл Александр Евгеньевичь"><br>
 				<label>Телефон:</label><br>
@@ -19,7 +19,7 @@ require_once 'indclude/function.php.';
 				<label>E-mail:</label><br>
 				<input id="email" type="text" name="email" required="" placeholder="Kopul@ua.fm"><br>
 				<input id="submit" type="submit" name="submit" value="Отправить">
-			
+		</form>
 				<?php $info = get_categories(); ?>
 				<?php foreach ($info as $inf ):  ?>
 			<div id="information">
@@ -33,13 +33,17 @@ require_once 'indclude/function.php.';
 			<img id="upload"style="width: 100px; height: 100px; display: none;" src="image_upload.gif" alt="">
 			<script src="jquery-3.3.1.min.js"></script>
 			<script src="jquery.maskedinput.js"></script>
+			
 			<script>
 				$("#tel").mask("+38(099) 999-9999");;
 				$(document).ready(function(){
-					$('#submit').bind("click", function(){
+					$('#submit').bind("click", function(e){
+						e.preventDefault();
 						var fio = $('#fio')[0].value
 						var tel = $('#tel')[0].value
 						var email = $('#email')[0].value
+						// var dann = $('form').serialize();
+						// alert(dann)
 						$.ajax({
 							url: 'content.php',
 							type: 'POST',
