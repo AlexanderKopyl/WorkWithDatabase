@@ -1,10 +1,11 @@
-<!-- <?php 
-require_once 'time.php';
+<?php 
+
+
+require_once 'indexDB.php';
 require_once 'indclude/database.php';
 require_once 'indclude/function.php';
-// 
 
- ?> -->
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@ require_once 'indclude/function.php';
 	<title>Document</title>
 </head>
 <body>
-	<a href="TestPage.php">TestPage</a>
+	
 		<form>
 				<label>ФИО:</label><br>
 				<input id="fio" type="text" name="fio" required="" placeholder="Копыл Александр Евгеньевичь"><br>
@@ -23,18 +24,18 @@ require_once 'indclude/function.php';
 				<input id="email" type="text" name="email" required="" placeholder="Kopul@ua.fm"><br>
 				<input id="submit" type="submit" name="submit" value="Отправить">
 		</form>
-				
+				<button class="test"></button>
 				<?php $info = get_categories(); ?>
 				
 			<div class="information">
 				
-				<?php foreach ($info as $inf ):  ?>
-				<ul>
+				<!-- <?php foreach ($info as $inf ):  ?>
+				<ul class="box">
 					<li><?=$inf['fio']?></li>
 					<li><?=$inf['tel']?></li>
 					<li><?=$inf['email']?></li>
 				</ul>
-				<?php endforeach; ?>
+				<?php endforeach; ?> -->
 			
 			
 			</div>
@@ -62,7 +63,7 @@ require_once 'indclude/function.php';
 							success: function(data){
 								console.log(data);
 								$('img').hide();
-									// $(".information").html(data)
+									$(".information").html(data)
 								}
 						})
 						.done(function() {
@@ -90,12 +91,27 @@ require_once 'indclude/function.php';
                     $(".information").html(html);  
                 }  
             });  
-        }  
-      
+        };
+        $(".test").click(function() {
+  				$.ajax({  
+                url: "indexDB.php",
+				
+                cache: false,  
+                success: function(html){  
+                    $(".information").html(html);  
+                }  
+            });  
+  		});
+        	 
+    
         $(document).ready(function(){  
+			
             show();  
-            setInterval('show()',1000);  
+             setInterval('show()',1000);  
         });  
+
+
+        	
 			</script>
 
 </body>
