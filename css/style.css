@@ -1,0 +1,52 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.box{
+	width: 20%;
+    margin: auto;
+    text-align: center;
+    border: 5px solid cornflowerblue;
+    padding: 29px;
+    border-radius: 10%;
+}
+input{
+	    padding: 10px;
+    border: 1px solid black;
+}
+input#submit{
+	background-color: green;
+    color: white;
+	    border: none;
+    margin-top: 16px;
+    padding: 16px;
+}
+body{
+	background-image:url(../wall.jpg);
+	background-position: cover;
+}
+.information div {
+    display: inline-block;
+    margin-right: 10px;
+}
+ul{
+	
+	font-size: 19px;
+    background-color: green;
+    color: white;
+    list-style:none;
+    text-align:center;
+    margin-top: 10px;
+}
+a{
+	background-color: green;
+    color: white;
+    padding: 6px 20px;
+    text-decoration: none;
+  
+}
+.mail{
+	margin-bottom: 10px;
+}
+

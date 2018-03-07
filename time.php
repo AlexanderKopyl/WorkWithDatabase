@@ -5,52 +5,49 @@
 	$result = mysqli_query($db, $sql);
 	$info = mysqli_fetch_all($result, MYSQL_ASSOC);
 
-	
+	// href="http://educationwmi/?id=<?php echo $info[$key]['id'];
 foreach ($info as $key => $val) {
 
         ?>
-        <script>
-        	$('a.deleteButton').click(function(e){
-			 		
-			 		// e.preventDefault();
-        		$.ajax({
-        			url: 'indexDB.php',
-        			type: 'POST',
-        			dataType: 'html',
-        			success:function(){
-        				console.log('work');
-        			}
-        		})
-        		.done(function() {
-        			console.log("success");
-        		})
-        		.fail(function() {
-        			console.log("error");
-        		})
-        		.always(function() {
-        			console.log("complete");
-        		});
-        		
-        		});
-      			
-
-
-			</script>
-        </script>
-		<div id="<?php echo $info[$key]['id'];?>">        
-            <ul >
-                    <li><?php echo $info[$key]['fio'];?>
-                    </li>
-                    <li><?php echo $info[$key]['tel'];?></li>
-						<li><?php echo $info[$key]['email'];?></li>
+       
+		<div class = "box_info">        
+            <ul>
+                    <li>FIO:<?php echo $info[$key]['fio'];?>
+                    </li>Tel:<?php echo $info[$key]['tel'];?></li>
+						<li class="mail">Email:<?php echo $info[$key]['email'];?></li>
 						
                 </ul>
-                   <a class ="deleteButton"href="http://educationwmi/?id=<?php echo $info[$key]['id'];?>">Удалить пользователя</a>
+                   <a href="#" class = "btn" id="<?php echo $info[$key]['id'];?>"">Удалить пользователя</a>
 
 
 		</div>
 
-
+ <script>
+    $('.btn').click(function(e){
+              var id = $(this).attr('id');
+                e.preventDefault();
+                $.ajax({
+                    url: 'indexDB.php',
+                    type: 'POST',
+                    data: {id:id},                 
+                    success:function(data){
+                        console.log(data);
+                    }
+                })
+                .done(function() {
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+          
+                
+        });
+                          
+        </script>
       			
 		
  

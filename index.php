@@ -1,6 +1,4 @@
 <?php 
-
-
 require_once 'indexDB.php';
 require_once 'indclude/database.php';
 require_once 'indclude/function.php';
@@ -10,11 +8,11 @@ require_once 'indclude/function.php';
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-
+	<link rel="stylesheet" href="css/style.css">
 	<title>Document</title>
 </head>
 <body>
-	
+	<div class="box">
 		<form>
 				<label>ФИО:</label><br>
 				<input id="fio" type="text" name="fio" required="" placeholder="Копыл Александр Евгеньевичь"><br>
@@ -24,20 +22,10 @@ require_once 'indclude/function.php';
 				<input id="email" type="text" name="email" required="" placeholder="Kopul@ua.fm"><br>
 				<input id="submit" type="submit" name="submit" value="Отправить">
 		</form>
-				<button class="test"></button>
-				<?php $info = get_categories(); ?>
-				
-			<div class="information">
-				
-				<!-- <?php foreach ($info as $inf ):  ?>
-				<ul class="box">
-					<li><?=$inf['fio']?></li>
-					<li><?=$inf['tel']?></li>
-					<li><?=$inf['email']?></li>
-				</ul>
-				<?php endforeach; ?> -->
+	</div>
 			
-			
+				
+			<div class="information">	
 			</div>
 			<img id="upload"style="width: 100px; height: 100px; display: none;" src="image_upload.gif" alt="">
 			<script src="jquery-3.3.1.min.js"></script>
@@ -48,10 +36,25 @@ require_once 'indclude/function.php';
 				$("#tel").mask("+38(099) 999-9999");
 				$(document).ready(function(){
 					$('#submit').bind("click", function(e){
+						for (var i = 0; i < $('.mail').length; i++) {
+						var val  = $('.mail')[i].childNodes[0].data;
+						var email = "Email:" + $('#email').val();
+					if( val === email ){
+						$('#email').css({
+							'border-color':'red'
+						})
+
+					}else{
+						$('#email').css({
+							'border-color':'black'
+						})
+					}
+					
+				}
 						e.preventDefault();
-						var fio = $('#fio')[0].value;
-						var tel = $('#tel')[0].value;
-						var email = $('#email')[0].value;
+						var fio = $('#fio').val();
+						var tel = $('#tel').val();
+						var email = $('#email').val();
 				
 						 
 						$.ajax({
@@ -60,10 +63,10 @@ require_once 'indclude/function.php';
 							data: ({ fio: fio, tel: tel, email: email }),
 							dataType: 'html',
 							beforeSend: funcBefore,
-							success: function(data){
-								console.log(data);
+							success: function(){
+								console.log("work");
 								$('img').hide();
-									$(".information").html(data)
+									// $(".information").html(data)
 								}
 						})
 						.done(function() {
@@ -92,22 +95,13 @@ require_once 'indclude/function.php';
                 }  
             });  
         };
-        $(".test").click(function() {
-  				$.ajax({  
-                url: "indexDB.php",
-				
-                cache: false,  
-                success: function(html){  
-                    $(".information").html(html);  
-                }  
-            });  
-  		});
+      
         	 
     
         $(document).ready(function(){  
 			
             show();  
-             setInterval('show()',1000);  
+             setInterval('show()',2000);  
         });  
 
 
